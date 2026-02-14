@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Animating Rocks Share</title>
+    <style>
+      body {
+        width: 320px;
+        font-family: monospace;
+        background-color: #1f2937;
+        /* bg-gray-800 */
+        color: #86efac;
+        /* text-green-300 */
+        padding: 16px;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 12px 0;
+        font-size: 16px;
+        border-bottom: 1px solid #86efac;
+        padding-bottom: 4px;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      .code-display {
+        font-size: 24px;
+        text-align: center;
+        letter-spacing: 4px;
+        background: #111827;
+        padding: 10px;
+        border: 1px dashed #86efac;
+        margin-bottom: 8px;
+        user-select: all;
+        cursor: pointer;
+      }
+
+      .timer {
+        text-align: center;
+        font-size: 12px;
+        color: #9ca3af;
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        background: #374151;
+        border: 1px solid #4b5563;
+        color: white;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+      }
+
+      button {
+        width: 100%;
+        padding: 8px;
+        background: #064e3b;
+        color: #86efac;
+        border: 1px solid #86efac;
+        cursor: pointer;
+        margin-bottom: 4px;
+      }
+
+      button:hover {
+        background: #065f46;
+      }
+
+      button.secondary {
+        background: transparent;
+        border-color: #4b5563;
+        color: #9ca3af;
+        font-size: 11px;
+        padding: 4px;
+      }
+      button.secondary:hover {
+        border-color: #86efac;
+        color: #86efac;
+      }
+
+      .share-item {
+        background: #374151;
+        padding: 8px;
+        margin-bottom: 8px;
+        border: 1px solid #4b5563;
+      }
+
+      .share-actions {
+        display: flex;
+        gap: 4px;
+        margin-top: 4px;
+      }
+
+      .btn-sm {
+        padding: 4px;
+        font-size: 12px;
+      }
+
+      .btn-accept {
+        border-color: #86efac;
+        color: #86efac;
+      }
+
+      .btn-decline {
+        border-color: #f87171;
+        color: #f87171;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="section">
+      <h1>MY SHARE CODE</h1>
+      <div id="code-container" class="hidden">
+        <div id="my-code" class="code-display" title="Click to Copy">...</div>
+        <div id="expiration-timer" class="timer">Expires in: --:--:--</div>
+      </div>
+      <button id="btn-new-code" class="secondary">GENERATE NEW CODE</button>
+      <div
+        id="status"
+        style="font-size: 12px; text-align: center; margin-top: 4px"
+      ></div>
+    </div>
+
+    <div class="section">
+      <h2>SEND ANIMATION</h2>
+      <input
+        type="text"
+        id="target-code"
+        placeholder="ENTER 6-CHAR CODE"
+        maxlength="6"
+        style="text-transform: uppercase"
+      />
+      <button id="btn-send">SEND CURRENT PROJECT</button>
+    </div>
+
+    <div class="section">
+      <h2>INBOX</h2>
+      <div id="inbox-list">
+        <div
+          style="
+            font-size: 12px;
+            color: #9ca3af;
+            text-align: center;
+            padding: 10px;
+          "
+        >
+          Checking messages...
+        </div>
+      </div>
+      <button id="btn-refresh" class="btn-sm" style="margin-top: 8px">
+        REFRESH
+      </button>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Animating.Rocks Plus",
+  "version": "1.0",
+  "description": "Adding cool features to animating.rocks to make it actually useful.",
+  "icons": {
+    "16": "logos/logo16.png",
+    "48": "logos/logo48.png",
+    "128": "logos/logo128.png"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Animating Rocks Share"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://animating.rocks/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
