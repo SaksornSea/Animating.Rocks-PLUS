@@ -1,6 +1,6 @@
 # Animating.Rocks PLUS
 
-A open source Google Chrome Extension to add more features to [Animating.Rocks](https://animating.rocks/).
+An open source Google Chrome Extension to add more features to [Animating.Rocks](https://animating.rocks/).
 
 ## Features
 
