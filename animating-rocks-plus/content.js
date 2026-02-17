@@ -29,7 +29,7 @@ const exportButtonHTML = `
 
 // HTML for the Footer Branding
 const footerBrandingHTML = `
-<p class="">Animating Rock Plus Extension • Developed by SaksornSea • <a href="https://github.com/SaksornSea" class="text-white"><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>SaksornSea</a></p>
+<a href="https://github.com/SaksornSea/Animating.Rocks-PLUS"><p class=""><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>Animating Rock Plus Extension</a> • Developed by SaksornSea • <a href="https://github.com/SaksornSea/" class="text-white"><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>SaksornSea</a></p>
 `;
 
 // Modal HTML (Updated Input Style: bg-white text-black)
