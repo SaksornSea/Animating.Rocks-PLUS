@@ -36,11 +36,12 @@ An open source Google Chrome Extension to add more features to [Animating.Rocks]
 #### Sharing
 
 1. Click the Animating.Rocks PLUS icon in the Chrome toolbar (you might need to pin the extension to the toolbar first)
-2. Enter the receiver's code
-3. Click the "Share" button
-4. The project will be sent to the receiver as a request first
-5. The receiver will get a notification to accept or decline the request
-6. If the receiver accepts the request, the project will be loaded into their editor
+2. Click the "GENERATE NEW CODE" button to get a code
+3. Enter the receiver's code
+4. Click the "SHARE" button
+5. The project will be sent to the receiver as a request first
+6. The receiver will get a notification to accept or decline the request
+7. If the receiver accepts the request, the project will be loaded into their editor
 
 #### Receiving
 
