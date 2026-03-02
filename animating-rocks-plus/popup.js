@@ -10,6 +10,7 @@ const ui = {
   sendBtn: document.getElementById("btn-send"),
   inboxList: document.getElementById("inbox-list"),
   refreshBtn: document.getElementById("btn-refresh"),
+  btnSettings: document.getElementById("btn-settings"), // Added settings button
 };
 
 let expirationInterval;
@@ -120,6 +121,11 @@ ui.newCodeBtn.addEventListener("click", generateNewCode);
 ui.code.addEventListener("click", () => {
   navigator.clipboard.writeText(ui.code.textContent);
   setStatus("Copied!");
+});
+
+// Settings button listener
+ui.btnSettings.addEventListener("click", () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL("settings.html") });
 });
 
 // --- INBOX LOGIC (Existing) ---

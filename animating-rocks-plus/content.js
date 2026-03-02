@@ -29,7 +29,7 @@ const exportButtonHTML = `
 
 // HTML for the Footer Branding
 const footerBrandingHTML = `
-<a href="https://github.com/SaksornSea/Animating.Rocks-PLUS"><p class=""><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>Animating Rock Plus Extension</a> • Developed by SaksornSea • <a href="https://github.com/SaksornSea/" class="text-white"><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>SaksornSea</a></p>
+<p><a href="https://github.com/SaksornSea/Animating.Rocks-PLUS"><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>Animating Rock Plus Extension</a> • Developed by SaksornSea • <a href="https://github.com/SaksornSea/" class="text-white"><svg width="14" height="14" class="inline-block mr-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><use href="https://animating.rocks/feather-sprite.2b6a67b5.svg#github"></use></svg>SaksornSea</a></p>
 `;
 
 // Modal HTML (Updated Input Style: bg-white text-black)
@@ -156,6 +156,12 @@ function injectElements() {
 
         targetContainer.appendChild(exportBtn);
 
+        // Change [Beta] to [Modded]
+        const betaSpan = header.querySelector('h1 span.text-yellow-300');
+        if (betaSpan && betaSpan.textContent.includes('[Beta]')) {
+            betaSpan.textContent = '[Modded]';
+        }
+
         // Modal Action Logic
         const cancelBtn = document.getElementById('arp-modal-cancel');
         const saveBtn = document.getElementById('arp-modal-save');
@@ -213,6 +219,108 @@ if (document.readyState === 'loading') {
 } else {
     injectElements();
 }
+
+// Keybind Handling
+let currentKeybinds = {
+    'kb-person': '1',
+    'kb-cat': '2',
+    'kb-ball': '3',
+    'kb-box': '4',
+    'kb-save': 's',
+    'kb-import': 'i',
+    'kb-export': 'e',
+    'kb-play': 'p',
+    'kb-stop': 'Escape'
+};
+
+// Load keybinds from storage
+chrome.storage.local.get(['keybinds'], (result) => {
+    if (result.keybinds) {
+        currentKeybinds = { ...currentKeybinds, ...result.keybinds };
+    }
+});
+
+// Update keybinds if they change in storage
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'local' && changes.keybinds) {
+        currentKeybinds = { ...currentKeybinds, ...changes.keybinds.newValue };
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    // Ignore keybinds if the user is typing in an input or textarea
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        return;
+    }
+
+    const key = e.key.toLowerCase();
+
+    // Helper to check if a key matches a keybind (case-insensitive, supports modifiers)
+    const matches = (id) => {
+        const bind = currentKeybinds[id];
+        if (!bind) return false;
+
+        const parts = bind.toLowerCase().split('+');
+        const mainKey = parts.pop();
+
+        // Check modifiers
+        const ctrlMatch = e.ctrlKey === parts.includes('ctrl');
+        const shiftMatch = e.shiftKey === parts.includes('shift');
+        const altMatch = e.altKey === parts.includes('alt');
+
+        // Check main key
+        // Map 'space' back to ' ' for comparison
+        const normalizedMainKey = mainKey === 'space' ? ' ' : mainKey;
+        const keyMatch = (normalizedMainKey === key || normalizedMainKey === e.key.toLowerCase());
+
+        return ctrlMatch && shiftMatch && altMatch && keyMatch;
+    };
+
+    // Spawn Buttons
+    if (matches('kb-person')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Person'));
+        if (btn) btn.click();
+    } else if (matches('kb-cat')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Cat'));
+        if (btn) btn.click();
+    } else if (matches('kb-ball')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Ball'));
+        if (btn) btn.click();
+    } else if (matches('kb-box')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Box'));
+        if (btn) btn.click();
+    }
+    // Save
+    else if (matches('kb-save')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.title === 'Save to browser');
+        if (btn) btn.click();
+    }
+    // Import
+    else if (matches('kb-import')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.title === 'Import Animation');
+        if (btn) btn.click();
+    }
+    // Export
+    else if (matches('kb-export')) {
+        const btn = Array.from(document.querySelectorAll('button')).find(el => el.title === 'Export Animation');
+        if (btn) btn.click();
+    }
+    // Play/Stop
+    else if (matches('kb-play')) {
+        e.preventDefault(); // Prevent scrolling
+        const playBtn = Array.from(document.querySelectorAll('button')).find(el => el.title === 'Play');
+        if (playBtn) playBtn.click();
+    } else if (key === 'escape' || matches('kb-stop')) {
+        const stopBtn = Array.from(document.querySelectorAll('button')).find(el => el.title === 'Stop');
+        if (stopBtn) stopBtn.click();
+
+        // Also close export modal if open
+        const modal = document.getElementById('arp-export-modal');
+        if (modal && modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        }
+    }
+});
 
 // Message Listener for Popup Interaction
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

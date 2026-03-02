@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Animating Rocks Settings</title>
+  <style>
+    body {
+      width: 400px;
+      font-family: monospace;
+      background-color: #1f2937;
+      /* bg-gray-800 */
+      color: #86efac;
+      /* text-green-300 */
+      padding: 16px;
+    }
+
+    h1 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      border-bottom: 1px solid #86efac;
+      padding-bottom: 4px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 22px);
+      /* Adjust for padding and border */
+      padding: 8px;
+      background: #374151;
+      border: 1px solid #4b5563;
+      color: white;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      background: #064e3b;
+      color: #86efac;
+      border: 1px solid #86efac;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #065f46;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SETTINGS</h1>
+
+  <div class="section" id="keybind-settings">
+    <h2>Keybinds</h2>
+    <div id="keybinds-list">
+      <p style="font-size: 11px; margin-bottom: 10px; color: #9ca3af;">Click an input and press a key combination (e.g.,
+        Ctrl+Space) to map it.</p>
+      <label>Spawn Person: <input type="text" id="kb-person" readonly placeholder="1"></label>
+      <label>Spawn Cat: <input type="text" id="kb-cat" readonly placeholder="2"></label>
+      <label>Spawn Ball: <input type="text" id="kb-ball" readonly placeholder="3"></label>
+      <label>Spawn Box: <input type="text" id="kb-box" readonly placeholder="4"></label>
+      <hr style="border: 0; border-top: 1px solid #4b5563; margin: 10px 0;">
+      <label>Save: <input type="text" id="kb-save" readonly placeholder="s"></label>
+      <label>Import: <input type="text" id="kb-import" readonly placeholder="i"></label>
+      <label>Export: <input type="text" id="kb-export" readonly placeholder="e"></label>
+      <hr style="border: 0; border-top: 1px solid #4b5563; margin: 10px 0;">
+      <label>Play: <input type="text" id="kb-play" readonly placeholder="p"></label>
+      <label>Stop: <input type="text" id="kb-stop" readonly placeholder="Escape"></label>
+    </div>
+    <button id="save-keybinds">SAVE KEYBINDS</button>
+    <div id="status" style="font-size: 12px; text-align: center; margin-top: 10px;"></div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+
+</html>

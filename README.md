@@ -1,12 +1,12 @@
 # Animating.Rocks PLUS
 
-An open source Google Chrome Extension to add more features to [Animating.Rocks](https://animating.rocks/).
+An open source Google Chrome Extension to add more features to [Animating.Rocks](https://animating.rocks/). (there might be a small chance of it being released as a Chrome Web Store extension, still thinking about paying the registration fee..)
 
 ## Features
 
 - Importing and exporting projects (mp4 exporting coming soon..)
 - Share projects with others with a code-based system
-- Keybinds (coming soon..)
+- Configurable keybinds
 
 ## Installation Instructions
 
@@ -50,3 +50,10 @@ An open source Google Chrome Extension to add more features to [Animating.Rocks]
 4. Wait for request to appear in your inbox (you may need to click the "REFRESH" button)
 5. Click "Accept" to receive the project
 6. The project will be loaded into your editor
+
+#### Keybinds
+
+1. Click the Animating.Rocks PLUS icon in the Chrome toolbar (you might need to pin the extension to the toolbar first)
+2. Click the "OPEN SETTINGS" button
+3. Enter the keybind you want to use
+4. Click the "SAVE KEYBINDS" button
